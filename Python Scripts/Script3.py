@@ -64,7 +64,6 @@ while True:
     if choice == '1':
         addContact()
         contactBook = sorted(contactBook, key = lambda i: i['name'])
-        print(contactBook)
         print('contact added successfully')
     elif choice == '2':
         searchordel()
@@ -89,5 +88,5 @@ while True:
         exit()
     else:
         print('Invalid Choice')
-        
-        
+
+
