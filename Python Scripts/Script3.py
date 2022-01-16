@@ -1,6 +1,9 @@
 import json
-with open('contacts.json') as json_file:
-    contactBook = json.load(json_file)
+try:
+    with open('contacts.json') as json_file:
+        contactBook = json.load(json_file)
+except:
+    contactBook=[]
 
 def addContact():
     try:
@@ -18,7 +21,6 @@ def addContact():
             number = str(input('Enter contact number : '))
         contact_dict = {'name':name,'number':number}
         contactBook.append(contact_dict)
-        sorted(contactBook, key = lambda i: i['name'])
     except:
         print('Somenthing went wrong please try again')
 
@@ -61,26 +63,31 @@ while True:
     choice = str(input('Enter Your Choice : '))
     if choice == '1':
         addContact()
+        contactBook = sorted(contactBook, key = lambda i: i['name'])
+        print(contactBook)
+        print('contact added successfully')
     elif choice == '2':
         searchordel()
     elif choice == '3':
         searchordel(dell=True)
     elif choice == '4':
         if contactBook:
-            contactBook = []
             print('All contacts deleted successfully')
+            contactBook = []
         else:
             print('Your Contacts are empty!')
     elif choice == '5':
-        for contact in contactBook:
-            if contactBook:
+        if contactBook:
+            for contact in contactBook:
                 print(contact)
-            else:
-                print('Your Contacts are empty!')
+        else:
+            print('Your Contacts are empty!')
     elif choice == '6':
         print('Good Bye!!')
         with open("contacts.json", "w") as outfile:
-            json.dump(contactBook, outfile)
+            json.dump(contactBook, outfile,indent=4)
         exit()
     else:
         print('Invalid Choice')
+        
+        
