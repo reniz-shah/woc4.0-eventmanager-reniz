@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %} Dashboard {% endblock %}
+{% block body %}
+<div id="container">
+    <div class="main" id="main">
+        <div class="content">
+            <div id="content" class="colM">
+                <h1>Dashboard</h1>
+                <div id="content-main">
+                    <form method="post" action="/dashboard/">
+                    <!-- <form method="post"> -->
+                        {% csrf_token %}
+                        <div>
+                            <fieldset class="module aligned ">
+                                <div class="form-row field-name">
+                                    <div>
+                                        <label class="required" for="id_name">Event ID:</label>
+                                        <input type="text" name="event_id" class="vTextField" maxlength="50" required
+                                            id="id_name">
+                                    </div>
+                                </div>
+                                <div class="form-row field-contact_no">
+                                    <div>
+                                        <label class="required" for="id_contact_no">Host Password :</label>
+                                        <input type="password" name="hostpassword" class="vTextField" maxlength="18"
+                                            required id="id_contact_no">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <h1 style="text-align: center;" class="display-2">
+                                <button type="submit" class="btn btn-secondary">Show</a>
+                              </h1>
+                              
+                              
+                        </div>
+                    </form>
+                    {% if data %}
+                    <div>
+                        <table class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Contact no</th>
+                                    <th scope="col">Email id</th>
+                                    <th scope="col">Event</th>
+                                    <th scope="col">No. of people</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in data %}
+                                <tr>
+                                    <th scope="row">{{i.id}}</th>
+                                    <td>{{i.name}}</td>
+                                    <td>{{i.contact_no}}</td>
+                                    <td>{{i.email_id}}</td>
+                                    <td>{{i.event}}</td>
+                                    <td>{{i.no_of_people}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %} Participate Registration {% endblock %}
+{% block body %}
+<div id="container">
+    <div class="main" id="main">
+        <div class="content">
+            <div id="content" class="colM">
+                <h1>Add participate</h1>
+                <div id="content-main">
+                    <form method="post" action="/participate_reg/">
+                        {% csrf_token %}
+                        <div>
+                            <fieldset class="module aligned ">
+                                <div class="form-row field-name">
+                                    <div>
+                                        <label class="required" for="id_name">Name:</label>
+                                        <input type="text" name="name" class="vTextField" maxlength="50" required
+                                            id="id_name">
+                                    </div>
+                                </div>
+                                <div class="form-row field-contact_no">
+                                    <div>
+                                        <label class="required" for="id_contact_no">Contact no:</label>
+                                        <input type="text" name="contact_no" class="vTextField" maxlength="18" required
+                                            id="id_contact_no">
+                                    </div>
+                                </div>
+                                <div class="form-row field-email_id">
+                                    <div>
+                                        <label class="required" for="id_email_id">Email id:</label>
+                                        <input type="text" name="email_id" class="vTextField" maxlength="50" required
+                                            id="id_email_id">
+                                    </div>
+                                </div>
+                                <div class="form-row field-registeration_type">
+                                    <div>
+                                        <label class="required" for="id_registeration_type">Registeration
+                                            type:</label>
+                                        <select name="registeration_type" id="reg" required id="id_registeration_type">
+                                            <option value="" selected>---------</option>
+                                            <option value="INDIVIDUAL">Individual</option>
+                                            <option value="GROUP">Group</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row field-event">
+                                    <div>
+                                        <label class="required" for="id_event">Event:</label>
+                                        <div class="related-widget-wrapper">
+                                            <select name="event" required id="id_event">
+                                                <option value="" selected>---------</option>
+                                                {% for i in events %}
+                                                <option value="{{ i.id }}">{{i.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row field-no_of_people">
+                                    <div>
+                                        <label class="required" for="id_no_of_people">No of people:</label>
+                                        <input type="number" disabled id="people" name="no_of_people" class="vIntegerField" required
+                                            id="id_no_of_people">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <h1 style="text-align: center;" class="display-2">
+                                <button type="submit" class="btn btn-secondary">Apply</a>
+                              </h1>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.getElementById("reg").onchange = function () {
+  document.getElementById("people").setAttribute("disabled", "disabled");
+  if (this.value == 'GROUP')
+    document.getElementById("people").removeAttribute("disabled");
+};
+</script>
+{% endblock %}

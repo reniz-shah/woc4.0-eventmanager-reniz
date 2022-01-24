@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %} Event Registration {% endblock %}
+{% block body %}
+<div id="container">
+  <div class="main" id="main">
+    <div class="content">
+      <div id="content" class="colM">
+        <h1>Add events</h1>
+        <div id="content-main">
+          <form method="post" action="/event_reg/">
+            {% csrf_token %}
+            <div>
+              <div class="form-row field-event_name">
+                <div>
+                  <label class="required" for="id_event_name">Event name:</label>
+                  <input type="text" name="event_name" class="vTextField" maxlength="50" required="" id="id_event_name">
+                </div>
+              </div>
+              <div class="form-row field-description">
+                <div>
+                  <label for="id_description">Description:</label>
+                  <textarea name="description" cols="40" rows="10" class="vLargeTextField"
+                    id="id_description"></textarea>
+                </div>
+              </div>
+              <div class="form-row field-venue">
+                <div>
+                  <label class="required" for="id_venue">Venue:</label>
+                  <input type="text" name="venue" class="vTextField" maxlength="120" required="" id="id_venue">
+                </div>
+              </div>
+              <div class="form-row field-fromDate">
+                <div>
+                  <label class="required" for="id_fromDate_0">FromDate:</label><br>
+                  <p class="datetime">
+                    Date: <input type="text" name="fromDate_0" class="vDateField" size="10" required="" id="id_fromDate_0">
+                    <br>
+                    Time: <input type="text" name="fromDate_1" class="vTimeField" size="8" required="" id="id_fromDate_1">
+                  </p>
+                </div>
+              </div>
+              <div class="form-row field-toDate">
+                <div>
+                  <label class="required" for="id_toDate_0">ToDate:</label>
+                  <p class="datetime">
+                    Date: <input type="text" name="toDate_0" class="vDateField" size="10" required="" id="id_toDate_0">
+                    <br>
+                    Time: <input type="text" name="toDate_1" class="vTimeField" size="8" required="" id="id_toDate_1">
+                    <br>
+                  </p>
+                </div>
+              </div>
+              <div class="form-row field-Deadline">
+                <div>
+                  <label class="required" for="id_Deadline_0">Deadline:</label>
+                  <p class="datetime">
+                    Date: <input type="text" name="Deadline_0" class="vDateField" size="10" required="" id="id_Deadline_0">
+                    <br>
+                    Time: <input type="text" name="Deadline_1" class="vTimeField" size="8" required="" id="id_Deadline_1">
+                    <br>
+                  </p>
+                </div>
+              </div>
+              <div class="form-row field-hostemail">
+                <div>
+                  <label class="required" for="id_hostemail">Hostemail:</label>
+                  <input type="text" name="hostemail" class="vTextField" maxlength="50" required="" id="id_hostemail">
+                </div>
+              </div>
+              <div class="form-row field-hostpassword">
+                <div>
+                  <label class="required" for="id_hostpassword">Hostpassword:</label>
+                  <input type="password" name="hostpassword" class="vTextField" maxlength="50" required="" id="id_hostpassword">
+                </div>
+              </div>
+              <h1 style="text-align: center;" class="display-2">
+                <button type="submit" class="btn btn-secondary">Register</a>
+              </h1>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

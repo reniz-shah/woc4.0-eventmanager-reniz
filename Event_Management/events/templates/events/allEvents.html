@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} All Events {% endblock %}
+{% block body %}
+
+
+<div class="accordion" id="accordionExample">
+    {% for i in events %}
+    <div class="accordion-item">
+        <h2 style="background: rgb(18, 18, 18);" class="accordion-header">
+            <button class="btn btn-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#div{{i.id}}"
+                aria-expanded="false">
+                {{i.name}}
+            </button>
+        </h2>
+        <div id="div{{i.id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Event ID : </dt>
+                    <dd class="col-sm-9">{{i.id}}</dd>
+
+                    <dt class="col-sm-3">Event Name : </dt>
+                    <dd class="col-sm-9">{{i.name}}</dd>
+
+                    <dt class="col-sm-3">Event Description : </dt>
+                    <dd class="col-sm-9"><p>{{i.description}}</p></dd>
+                            
+                    <dt class="col-sm-3">Event Venue : </dt>
+                    <dd class="col-sm-9"><p>{{i.venue}}</p></dd>
+
+                    <dt class="col-sm-3">Event Start Date : </dt>
+                    <dd class="col-sm-9"><p>{{i.from_Date}}</p></dd>
+
+                    <dt class="col-sm-3">Event End Date : </dt>
+                    <dd class="col-sm-9"><p>{{i.to_Date}}</p></dd>
+
+                    <dt class="col-sm-3">Deadline for Regestrations : </dt>
+                    <dd class="col-sm-9"><p>{{i.Deadline}}</p></dd>
+
+                    <dt class="col-sm-3">E-mail id of Host : </dt>
+                    <dd class="col-sm-9"><p>{{i.host_email}}</p></dd>
+                    <h1 style="text-align: center;" class="display-2">
+                        <a href="/participate/" class="btn btn-dark">Participate</a>
+                      </h1>
+                  </dl>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

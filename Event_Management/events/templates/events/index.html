@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} Eventex {% endblock %}
+
+
+{% block body %} 
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Welcome to Eventex!</strong> Amazing site to organise your events.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+    <h1 style="text-align: center;" class="display-2">Services</h1>
+
+
+
+{% load static %}
+
+
+<div class="container">
+
+  <div class="row">
+    <div class="col">
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  <img src="{%static 'events/register.jfif'%}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h1 class="card-title">Event Registration</h1>
+    <a href="/event/" class="btn btn-primary">Register</a>
+  </div>
+</div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  <img src="{%static 'events/applyNow.jfif'%}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h1 class="card-title">Participate in Event</h1>
+    <a href="/participate/" class="btn btn-primary">Apply</a>
+  </div>
+</div>
+    </div>
+    <div class="col">
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+  <img src="{%static 'events/dashboard.jfif'%}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h1 class="card-title">Dashboard</h1>
+    <a href="/dashboard/" class="btn btn-primary">Show</a>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<h1 style="text-align: center;" class="display-2">
+  <a href="/allEvents/" class="btn btn-primary  btn-lg btn-block">All Events</a>
+</h1>
+
+{% load static %}
+ {% endblock %}
