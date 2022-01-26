@@ -14,10 +14,10 @@ def sendMsg(contact_no,message_str):
     contact_no = contact_no.replace('-','')
     contact_no = contact_no.replace('+91','')
     contact_no = '+91'+contact_no
-    account_sid = ('ACf4bd440d27acbfcc8fb42afb1bc4a6dd')
-    auth_token = ('e86152c2c8c5b42661dcee18f5184e14')
+    account_sid = ('twilio_SID')
+    auth_token = ('twilio auth token')
     client = Client(account_sid, auth_token)
-    client.messages.create(from_='+16204980498',
+    client.messages.create(from_='your twilio number',
                         to=contact_no,
                         body=message_str)
 
@@ -34,11 +34,11 @@ def participate_reg(request):
         no_of_people = request.POST.get('no_of_people')
         if not no_of_people:
             no_of_people = 1
-        f = open(r"C:\Users\admin\Documents\MSC-IT\Django\Event_Management\events\participate_cnt.txt",'r')
+        f = open("participate_cnt.txt",'r')
         cnt = int(f.read())
         f.close()
         cnt+=1
-        f = open(r"C:\Users\admin\Documents\MSC-IT\Django\Event_Management\events\participate_cnt.txt",'w')
+        f = open("participate_cnt.txt",'w')
         f.write(str(cnt))
         f.close()
         p1 = participate(cnt,name,contact_no,email_id,registeration_type,event,no_of_people)
@@ -52,8 +52,8 @@ def participate_reg(request):
         to_email = []
         to_email.append(email_id)
         title = 'Participation in ' + str(eventName)
-        email = EmailMessage(title, message_str, to=to_email)
-        email.send()
+        # email = EmailMessage(title, message_str, to=to_email)
+        # email.send()
         # sendMsg(contact_no,message_str)
 
     response = redirect('/home/')
@@ -73,11 +73,11 @@ def event_reg(request):
         from_Date = datetime.strptime(fdate, format)
         to_Date = datetime.strptime(tdate, format)
         Deadline = datetime.strptime(deadline_date, format)
-        f = open(r"C:\Users\admin\Documents\MSC-IT\Django\Event_Management\events\event_cnt.txt",'r')
+        f = open("event_cnt.txt",'r')
         cnt = int(f.read())
         f.close()
         cnt+=1
-        f = open(r"C:\Users\admin\Documents\MSC-IT\Django\Event_Management\events\event_cnt.txt",'w')
+        f = open("event_cnt.txt",'w')
         f.write(str(cnt))
         f.close()
         e1 = events(cnt,event_name,description,venue,from_Date,to_Date,Deadline,hostemail,hostpassword)
@@ -85,8 +85,8 @@ def event_reg(request):
         to_email = []
         to_email.append(hostemail)
         message_str = "Thank you for registering your Event please verify your event details \n\nEvent Name :  "+event_name + "\nVenue at : "+venue + "\nFrom " + fdate + "\nTo : " + tdate + "\nDeadline for Registeration : " + deadline_date + "\n\n\nThanks and Regards \nReniz Shah"
-        email = EmailMessage('Event Registration', message_str, to=to_email)
-        email.send()
+        # email = EmailMessage('Event Registration', message_str, to=to_email)
+        # email.send()
     response = redirect('/home/')
     return response
 
